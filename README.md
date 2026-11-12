@@ -1,1 +1,1 @@
-# JPG-to_PDF
+# JPG-to-PDF
