@@ -1,0 +1,20 @@
+# Render Blueprint. One web service builds the React page and runs the Express
+# server, which serves both the page and the API.
+services:
+  - type: web
+    name: jpg-to-pdf
+    runtime: node
+    plan: free
+    buildCommand: npm ci --prefix server && npm ci --prefix client && npm run build --prefix client
+    startCommand: npm start --prefix server
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 24.13.1
+      # Render only sends traffic to a server that listens on all interfaces.
+      - key: HOST
+        value: 0.0.0.0
+      # Requests pass through Cloudflare and then Render's own proxy. Counting those
+      # two lets the rate limiter see each visitor's address instead of the proxy's.
+      - key: TRUST_PROXY
+        value: "2"

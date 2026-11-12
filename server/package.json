@@ -1,0 +1,16 @@
+{
+  "name": "jpg-to-pdf-server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.4",
+    "multer": "^2.5.0",
+    "pdf-lib": "^1.17.1",
+    "pdfkit": "^0.20.2"
+  }
+}
